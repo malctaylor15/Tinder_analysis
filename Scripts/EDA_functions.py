@@ -115,3 +115,59 @@ def get_msg_df(message_dict):
 
 
     return(message_df)
+
+
+def flatten_date(timestamp):
+    """
+    Flatten time stamp date into month and year string
+    Used to help create groupbys
+
+    """
+    yr_raw = timestamp.year
+    yr = str(yr_raw)
+    mon_raw = timestamp.month
+    if mon_raw < 10:
+        mon = "0"+str(mon_raw)
+    else:
+        mon = str(mon_raw)
+
+    flatten_date = yr+mon
+    return(flatten_date)
+
+def plot_number_of_msgs_ovr_time(flg_ovr_time):
+    """
+    Plot number of messags over time
+    """
+
+    fig, ax = plt.subplots(1)
+    ax.plot(flg_ovr_time)
+    fig.suptitle("Number of messages over time")
+    ax.set_xlabel("Year + Month")
+    ax.set_ylabel("Number of Occurances")
+    ax.grid(True)
+    fig.autofmt_xdate()
+    return(fig)
+
+
+def plot_flag_fx(n_msg_over_time, flg_ovr_time, demo_flg):
+    """
+    Plots the number of messages vs time and a flag over time
+
+    n_msg_over_time (Series): number of message over time
+        The index should be the same as the flg_ovr_time
+
+    flg_ovr_time (Series): count of the flag over time
+
+    demo_flg (str): Name of the flag-- will be marked in the legend
+    """
+
+    fig, ax = plt.subplots(1)
+    ax.plot(n_msg_over_time, label = "Number of messages")
+    ax.plot(flg_ovr_time, label = demo_flg)
+    fig.suptitle("Number of messages over time")
+    ax.set_xlabel("Year + Month")
+    ax.set_ylabel("Number of Occurances")
+    ax.grid(True)
+    fig.autofmt_xdate()
+    leg = ax.legend(loc='best', fancybox=True)
+    return(fig)
