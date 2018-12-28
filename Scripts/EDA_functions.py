@@ -3,8 +3,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import json
-import os
+# import json
+# import os
 
 
 def word_list_in_phrase(word_list, phrase, partial = False):
