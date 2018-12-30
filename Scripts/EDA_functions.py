@@ -121,6 +121,7 @@ def flatten_date(timestamp):
     """
     Flatten time stamp date into month and year string
     Used to help create groupbys
+    Best used in apply loops
 
     """
     yr_raw = timestamp.year
