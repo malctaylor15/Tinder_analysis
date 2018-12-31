@@ -6,4 +6,6 @@ cp -r ../Scripts .
 cp ../aws_transformer.py aws_transformer.py
 zip -g aws_transformer.zip aws_transformer.py 
 zip -g -r aws_transformer.zip Scripts
+aws s3 cp aws_transformer.zip s3://demo-tinder-data
+aws lambda update-function-code --zip-file s3://demo-tinder-data/aws_transformer.zip
 echo "Completed zip"

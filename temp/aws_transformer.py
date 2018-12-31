@@ -10,9 +10,10 @@ import sys
 import uuid
 import boto3
 # from collections import Counter
-# import os
+import os
+import sys
 # import re
-
+import pdb
 s3_client = boto3.client('s3')
 
 def parse_json(data_path, output_path= "output_graphs.pdf"):
@@ -23,10 +24,13 @@ def parse_json(data_path, output_path= "output_graphs.pdf"):
     :param pdf_name: (optional) string for the name and location for the pdf that was created
     :return:
     """
-
-
+    print(data_path)
+    if not os.path.isfile(data_path):
+        print("File not found at ", data_path)
+        return(1)
+    # pdb.set_trace()
     # Open JSON file
-    with open(data_path, "rb") as inp:
+    with open(data_path, 'rb') as inp:
         data = json.load(inp)
 
     # Parse Json and put into dataframe with levels of MatchId and message number
@@ -61,9 +65,24 @@ def handler(event, context):
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
-        download_path = '/tmp/{}{}'.format(uuid.uuid4(), key)
-        upload_path = '/tmp/{}_output_graphs.pdf'.format(key)
+        download_path = str('/tmp/data')
+        upload_path = str('/tmp/{}_output_graphs.pdf'.format(key))
+        new_key = "output_graphs.pdf"
 
         s3_client.download_file(bucket, key, download_path)
         parse_json(download_path, upload_path)
-        s3_client.upload_file(upload_path, bucket, key)
+        s3_client.upload_file(upload_path, bucket, new_key)
+        print("Finished uploading PDF")
+
+    return (0)
+
+
+if __name__ =="__main__":
+    input = sys.argv[1]
+    with open(input, "rb") as inp:
+        test_event = json.load(inp)
+    handler(test_event, None)
+    print("Complete")
+
+# To test run:
+# python aws_transformer.py [data.json]

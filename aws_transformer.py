@@ -10,7 +10,7 @@ import sys
 import uuid
 import boto3
 # from collections import Counter
-# import os
+import os
 # import re
 
 s3_client = boto3.client('s3')
@@ -23,10 +23,13 @@ def parse_json(data_path, output_path= "output_graphs.pdf"):
     :param pdf_name: (optional) string for the name and location for the pdf that was created
     :return:
     """
-
+    print(data_path)
+    if not os.path.isfile(data_path):
+        print("File not found at ", data_path)
+        return(1)
 
     # Open JSON file
-    with open(data_path, "rb") as inp:
+    with open(data_path, "r") as inp:
         data = json.load(inp)
 
     # Parse Json and put into dataframe with levels of MatchId and message number
@@ -61,9 +64,11 @@ def handler(event, context):
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
-        download_path = '/tmp/{}{}'.format(uuid.uuid4(), key)
+        download_path = u'/tmp/data'
         upload_path = '/tmp/{}_output_graphs.pdf'.format(key)
 
         s3_client.download_file(bucket, key, download_path)
         parse_json(download_path, upload_path)
         s3_client.upload_file(upload_path, bucket, key)
+
+    return (0)
