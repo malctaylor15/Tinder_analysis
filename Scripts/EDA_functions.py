@@ -108,6 +108,7 @@ def get_msg_df(message_dict):
     message_df['question_word_in_msg'] = message_df.apply(lambda x: word_list_in_phrase(question_words, x['message']), axis =1 )
     message_df['question_mark_in_msg'] = message_df.apply(lambda x: 1 if "?" in x['message'] else 0, axis = 1)
 
+
     explicit_words = ["fuck", "shit", "bitch", "sex", "ass"]
     message_df["explicit_word_in_msg"] = message_df.apply(
         lambda x: word_list_in_phrase(explicit_words, x['message']), axis =1 )
