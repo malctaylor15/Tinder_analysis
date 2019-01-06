@@ -4,14 +4,19 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import json
 
-from Scripts import EDA_functions as mt_eda
 from matplotlib.backends.backend_pdf import PdfPages
 import sys
 import uuid
 import boto3
 # from collections import Counter
 import os
+import sys
 # import re
+import pdb
+
+from Scripts import EDA_functions as mt_eda
+from Scripts import usage_analysis_fx as usage
+
 
 s3_client = boto3.client('s3')
 
@@ -27,36 +32,33 @@ def parse_json(data_path, output_path= "output_graphs.pdf"):
     if not os.path.isfile(data_path):
         print("File not found at ", data_path)
         return(1)
-
+    # pdb.set_trace()
     # Open JSON file
-    with open(data_path, "r") as inp:
+    with open(data_path, 'rb') as inp:
         data = json.load(inp)
 
     # Parse Json and put into dataframe with levels of MatchId and message number
-    msg_df = pd.DataFrame(data['Messages'][10]['messages'])
-    msg_df['sent_date'] = pd.to_datetime(msg_df['sent_date'])
     list_of_dfs = [mt_eda.get_msg_df(msg_dict) for msg_dict in data["Messages"]]
     all_msg_df = pd.concat(list_of_dfs, axis=0)
 
-    # Data preparation for plots
-    all_msg_df['flatten_date'] = all_msg_df['sent_date'].apply(mt_eda.flatten_date)
-    dt_gb = all_msg_df.groupby('flatten_date')
-    flag_col = ['explicit_word_in_msg', 'funny_word_in_msg', 'question_mark_in_msg', 'question_word_in_msg']
-    n_msg_over_time = dt_gb.apply(len)
+    # Get plots related to messages
+    msg_plots = mt_eda.get_msg_related_plots(all_msg_df)
 
-    # Create plots of message over time with flags
-    plts = []
-    plts.append(mt_eda.plot_number_of_msgs_ovr_time(n_msg_over_time))
-    for demo_flg in flag_col:
-        plts.append(mt_eda.plot_flag_fx(n_msg_over_time, dt_gb[demo_flg].sum(), demo_flg))
+    # Gather data for usage plots
+    usage_df = pd.DataFrame(data["Usage"])
+    usage_plots = usage.create_usage_plots(usage_df)
 
     # Export plots to pdf
     pp = PdfPages(output_path)
-    for plt in plts:
-        pp.savefig(plt)
-    pp.close()
+    for tmp_plt in msg_plots:
+        pp.savefig(tmp_plt)
 
-    print("Complete!")
+    for tmp_plt in usage_plots:
+        pp.savefig(tmp_plt)
+
+    pp.close()
+    print("Completed parse json!")
+
     return(0)
 
 
@@ -64,11 +66,24 @@ def handler(event, context):
     for record in event['Records']:
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
-        download_path = u'/tmp/data'
-        upload_path = '/tmp/{}_output_graphs.pdf'.format(key)
+        download_path = str('/tmp/data_{}.json'.format(uuid.uuid4()))
+        upload_path = str('/tmp/{}_output_graphs.pdf'.format(key))
+        new_key = "output_graphs.pdf"
 
         s3_client.download_file(bucket, key, download_path)
         parse_json(download_path, upload_path)
-        s3_client.upload_file(upload_path, bucket, key)
+        s3_client.upload_file(upload_path, bucket, new_key)
+        print("Finished uploading PDF to s3")
 
     return (0)
+
+
+if __name__ =="__main__":
+    input = sys.argv[1]
+    with open(input, "rb") as inp:
+        test_event = json.load(inp)
+    handler(test_event, None)
+    print("Completed python main fx")
+
+# To test run:
+# python aws_transformer.py inputfile.txt
