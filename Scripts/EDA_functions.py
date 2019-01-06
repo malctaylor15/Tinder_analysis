@@ -107,6 +107,7 @@ def get_msg_df(message_dict):
     question_words = ["who", "what", "where", "when", "why", "how", "how's", "what's"]
     message_df['question_word_in_msg'] = message_df.apply(lambda x: word_list_in_phrase(question_words, x['message']), axis =1 )
     message_df['question_mark_in_msg'] = message_df.apply(lambda x: 1 if "?" in x['message'] else 0, axis = 1)
+    message_df['exclamation_mark_in_msg'] = message_df.apply(lambda x: 1 if "!" in x['message'] else 0, axis=1)
 
     explicit_words = ["fuck", "shit", "bitch", "sex", "ass"]
     message_df["explicit_word_in_msg"] = message_df.apply(
@@ -121,6 +122,7 @@ def flatten_date(timestamp):
     """
     Flatten time stamp date into month and year string
     Used to help create groupbys
+    Best used in apply loops
 
     """
     yr_raw = timestamp.year
@@ -141,10 +143,15 @@ def plot_number_of_msgs_ovr_time(flg_ovr_time):
 
     fig, ax = plt.subplots(1)
     ax.plot(flg_ovr_time)
-    fig.suptitle("Number of messages over time")
+    fig.suptitle("Number of messages per month")
     ax.set_xlabel("Year + Month")
     ax.set_ylabel("Number of Occurances")
     ax.grid(True)
+    # Show every n (3rd) label on x axis
+    n = 3
+    for index, label in enumerate(ax.xaxis.get_ticklabels()):
+        if index % n != 0:
+            label.set_visible(False)
     fig.autofmt_xdate()
     return(fig)
 
@@ -164,10 +171,35 @@ def plot_flag_fx(n_msg_over_time, flg_ovr_time, demo_flg):
     fig, ax = plt.subplots(1)
     ax.plot(n_msg_over_time, label = "Number of messages")
     ax.plot(flg_ovr_time, label = demo_flg)
-    fig.suptitle("Number of messages over time")
+    fig.suptitle("Number of " + demo_flg + " per month")
     ax.set_xlabel("Year + Month")
     ax.set_ylabel("Number of Occurances")
     ax.grid(True)
+    # Show every n (3rd) label on x axis
+    n = 3
+    for index, label in enumerate(ax.xaxis.get_ticklabels()):
+        if index % n != 0:
+            label.set_visible(False)
     fig.autofmt_xdate()
     leg = ax.legend(loc='best', fancybox=True)
     return(fig)
+
+def get_msg_related_plots(all_msg_df):
+    """
+    Main work flow for gathering plots related to messages
+
+    :return:
+    """
+
+    # Data preparation for plots
+    all_msg_df['flatten_date'] = all_msg_df['sent_date'].apply(flatten_date)
+    dt_gb = all_msg_df.groupby('flatten_date')
+    flag_col = ['explicit_word_in_msg', 'funny_word_in_msg', 'question_mark_in_msg', 'question_word_in_msg', "exclamation_mark_in_msg"]
+    n_msg_over_time = dt_gb.apply(len)
+
+    # Create plots of message over time with flags
+    plts = []
+    plts.append(plot_number_of_msgs_ovr_time(n_msg_over_time))
+    for demo_flg in flag_col:
+        plts.append(plot_flag_fx(n_msg_over_time, dt_gb[demo_flg].sum(), demo_flg))
+    return(plts)

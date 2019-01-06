@@ -1,4 +1,4 @@
 Data/
 Data/*
-temp/*
-
+.idea/
+aws_transformer.zip

@@ -21,7 +21,7 @@ def parse_json(data_path, pdf_name= "output_graphs.pdf"):
     :return:
     """
 
-
+    print(type(data_path))
     # Open JSON file
     with open(data_path, "rb") as inp:
         data = json.load(inp)
