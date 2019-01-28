@@ -2,3 +2,4 @@ Data/
 Data/*
 .idea/
 aws_transformer.zip
+demos_checkpoints
