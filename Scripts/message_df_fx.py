@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 # import json
 # import os
 
+from Scripts import utils
 
 def word_list_in_phrase(word_list, phrase, partial = False):
     """
@@ -46,10 +47,13 @@ def word_list_in_phrase(word_list, phrase, partial = False):
 def get_msg_df(message_dict):
 
     """
-    Parse the message dictionary for each conversation
+    Parse the message dictionary for each conversation -- creates 2 level index of match_id and message within convo number
     The message dict should have the match_id and the list of messages (your side)
 
-
+    Input:
+        message_dict (dict): raw messages from json
+    Output:
+        message_df (pd.DataFrame): message data frame with columns to find key attributes
     """
 
     match_id = message_dict['match_id']
@@ -95,7 +99,7 @@ def get_msg_df(message_dict):
     message_df["n_words_in_msg"]=message_df.apply(lambda x: len(x['message'].split(" ")), axis = 1)
 
 
-    # New column about time of messages
+    # New column about time between messages
     message_df['time_since_last_msg'] = message_df['sent_date'].diff()
     message_df['time_since_last_2_msgs'] = message_df['sent_date'].diff(2)
     # Think about escalation in message sending or if time between texts is small then...
@@ -202,4 +206,76 @@ def get_msg_related_plots(all_msg_df):
     plts.append(plot_number_of_msgs_ovr_time(n_msg_over_time))
     for demo_flg in flag_col:
         plts.append(plot_flag_fx(n_msg_over_time, dt_gb[demo_flg].sum(), demo_flg))
+
     return(plts)
+
+
+def get_message_metrics(message_df):
+    """
+    Get metrics from message dataframe
+
+    message_df (pandas DataFrame):
+        Dataframe with info about messages sent, time, content of message, and whom it was sent
+
+    Returns
+    metrics_to_save (dict):
+        dictionary of name of metric and value
+    """
+
+    # Input Validation
+    expected_columns = ['sent_date', 'n_words_in_msg', 'message']
+    for col in expected_columns:
+        if col not in message_df.columns:
+            raise IndexError(col + " not in dataframe columns " + message_df.columns)
+
+    expected_index_keys = ['match_id', 'msg_number']
+    for col in expected_index_keys:
+        if col not in message_df.index.names:
+            raise IndexError(col + " not in dataframe columns " + message_df.index.names)
+
+    # Set up -- needed for multi index slicing
+    idx = pd.IndexSlice
+
+    # Metrics to save
+    metrics_to_save = {}
+    metrics_to_save["Date of First Message Sent"] = message_df['sent_date'].min().strftime('%b %d %Y')
+    metrics_to_save["Date of Last Message Sent"] = message_df['sent_date'].max().strftime('%b %d %Y')
+    metrics_to_save["Number of Matches"] = message_df.index.get_level_values('match_id').nunique()
+    metrics_to_save["Number Matches with no Messages"] = message_df.loc[idx[:, -1],].shape[0]
+    metrics_to_save["Most Number of Messages Sent to a Match"] = message_df.index.get_level_values('msg_number').max()
+    metrics_to_save["Average Number of Words per Message"] = message_df['n_words_in_msg'].mean().round(2)
+    metrics_to_save["Median Number of Words per Message"] = np.round(message_df['n_words_in_msg'].quantile(0.50), 2)
+    # metrics_to_save["Average Messages Per Match"] = message_df.index.get_level_values('msg_number').mean().round(3)
+
+    # Time calculations
+    time_diff_days = (message_df['sent_date'].max() - message_df['sent_date'].min()).days
+    years = int(time_diff_days / 365)
+    months = int((time_diff_days % 365) / 30)
+    days = (time_diff_days % 365) % 30
+    metrics_to_save["Total Time on Tinder from First Message to Last"] = "{} years {} months {} days" \
+        .format(years, months, days)
+
+    # First message analysis
+    first_msg = message_df.loc[idx[:, 0], "message"]
+    first_msg = pd.DataFrame(first_msg)
+
+    # Clean and generate additional flags
+    first_msg['message'] = first_msg['message'].str.rstrip(' ')
+    first_msg['message'] = first_msg['message'].str.rstrip('  ')
+    same_first_message = first_msg['message'].value_counts().sort_values(ascending=False)
+
+    first_msg['hey_hi_flag'] = first_msg['message'].str.count('((H|h)ey|(H|h)i)')
+    first_msg['How \'sit going_flag'] = first_msg['message'].str.contains('it going')
+
+    # Save some metrics
+    metrics_to_save["Hey or Hi in First Message"] = first_msg['hey_hi_flag'].sum()
+    metrics_to_save["(How's ) it going in First Message"] = first_msg['How \'sit going_flag'].sum()
+    metrics_to_save["Most Common First Message"] = same_first_message.index[0]
+    metrics_to_save["Number of Times Most Common First Message Used"] = same_first_message[0]
+    metrics_to_save["Second Most Common First Message"] = same_first_message.index[1]
+    metrics_to_save["Number of Times Second Most Common First Message Used"] = same_first_message[1]
+    metrics_to_save["Third Most Common First Message"] = same_first_message.index[2]
+    metrics_to_save["Number of Times Third Most Common First Message Used"] = same_first_message[2]
+
+    metrics_to_save = utils.check_dict_types(metrics_to_save)
+    return (metrics_to_save)

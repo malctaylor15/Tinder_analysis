@@ -3,10 +3,11 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from Scripts import utils
 import os
 import re
 
-from Scripts import EDA_functions as mt_eda
+from Scripts import message_df_fx as mt_eda
 
 def gather_usage_stats(usage_df):
 
@@ -35,6 +36,7 @@ def gather_usage_stats(usage_df):
 
     derived_metrics = {k: np.round(v, 2) for k, v in derived_metrics.items()}
 
+    derived_metrics = utils.check_dict_types(derived_metrics)
     return(derived_metrics)
 
 def gather_max_usage(usage_df):

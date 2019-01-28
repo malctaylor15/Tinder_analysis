@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import json
 
-from Scripts import EDA_functions as mt_eda
+from Scripts import message_df_fx as mt_eda
 from matplotlib.backends.backend_pdf import PdfPages
 import sys
 # from collections import Counter

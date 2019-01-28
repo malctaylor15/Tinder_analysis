@@ -2,6 +2,7 @@
 import pandas as pd
 # import numpy as np
 import matplotlib.pyplot as plt
+plt.ioff()
 import json
 
 from matplotlib.backends.backend_pdf import PdfPages
@@ -11,14 +12,20 @@ import boto3
 # from collections import Counter
 import os
 import sys
+import datetime
 # import re
 import pdb
+from decimal import Decimal
 
-from Scripts import EDA_functions as mt_eda
+
+from Scripts import utils
+from Scripts import message_df_fx as msg_fx
 from Scripts import usage_analysis_fx as usage
-
+from Scripts import user_page_fx as user
 
 s3_client = boto3.client('s3')
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('TinderAnalysis')
 
 def parse_json(data_path, output_path= "output_graphs.pdf"):
     """
@@ -32,21 +39,39 @@ def parse_json(data_path, output_path= "output_graphs.pdf"):
     if not os.path.isfile(data_path):
         print("File not found at ", data_path)
         return(1)
-    # pdb.set_trace()
     # Open JSON file
     with open(data_path, 'rb') as inp:
         data = json.load(inp)
 
     # Parse Json and put into dataframe with levels of MatchId and message number
-    list_of_dfs = [mt_eda.get_msg_df(msg_dict) for msg_dict in data["Messages"]]
-    all_msg_df = pd.concat(list_of_dfs, axis=0)
+    list_of_dfs = [msg_fx.get_msg_df(msg_dict) for msg_dict in data["Messages"]]
+    all_msg_df = pd.concat(list_of_dfs, axis=0, sort = True)
 
     # Get plots related to messages
-    msg_plots = mt_eda.get_msg_related_plots(all_msg_df)
+    msg_plots = msg_fx.get_msg_related_plots(all_msg_df)
+    msg_metrics = msg_fx.get_message_metrics(all_msg_df)
 
     # Gather data for usage plots
     usage_df = pd.DataFrame(data["Usage"])
     usage_plots = usage.create_usage_plots(usage_df)
+    usage_metrics = usage.gather_usage_stats(usage_df)
+
+    # Gather user info to keep
+    user_df = user.get_userdf_parts(data["User"])
+
+    # Combine metrics to be stored
+    all_metrics = {}
+    all_metrics["usage"] = usage_metrics
+    all_metrics["message"] = msg_metrics
+    all_metrics["user"] = user_df
+
+    for metric_type in all_metrics.keys():
+        if type(all_metrics[metric_type]) == dict:
+            for key in all_metrics[metric_type].keys():
+                if (type(all_metrics[metric_type]) == pd.DataFrame) or \
+                    (type(all_metrics[metric_type][key]) == pd.Series):
+                    all_metrics[metric_type][key] = all_metrics[metric_type][key].to_dict()
+
 
     # Export plots to pdf
     pp = PdfPages(output_path)
@@ -59,7 +84,8 @@ def parse_json(data_path, output_path= "output_graphs.pdf"):
     pp.close()
     print("Completed parse json!")
 
-    return(0)
+    return(all_metrics)
+
 
 
 def handler(event, context):
@@ -68,12 +94,28 @@ def handler(event, context):
         key = record['s3']['object']['key']
         download_path = str('/tmp/data_{}.json'.format(uuid.uuid4()))
         upload_path = str('/tmp/{}_output_graphs.pdf'.format(key))
-        new_key = "output_graphs.pdf"
+        new_key = 'output_graphs.pdf'
 
         s3_client.download_file(bucket, key, download_path)
-        parse_json(download_path, upload_path)
+        metrics = parse_json(download_path, upload_path)
+        tbl_response = table.put_item(
+            Item = {
+                'created_birthday': "_".join([metrics['user']['create_date'],
+                                             metrics['user']['birth_date']]),
+                'request_date': str(datetime.datetime.now()),
+                'pdf_s3_bucket': bucket,
+                'pdf_s3_file_name': new_key,
+                'user_df': metrics['user'],
+                'usage_df': metrics['usage'],
+                'message_df':metrics['message']
+            }
+        )
+
+        # TODO: Add call back to parse server responses
         s3_client.upload_file(upload_path, bucket, new_key)
-        print("Finished uploading PDF to s3")
+        print("Finished uploading PDF to s3 and data base entry attempted")
+
+
 
     return (0)
 

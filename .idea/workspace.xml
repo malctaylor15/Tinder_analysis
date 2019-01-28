@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="181edcd3-317e-4083-9613-f622448115c3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/temp/Scripts/usage_analysis_fx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/user_page_fx.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Scripts/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Tinder_analysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Tinder_analysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/EDA v3 Usage-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/EDA v3 Usage-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EDA v2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EDA v2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EDA v3 Usage.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EDA v3 Usage.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scripts/EDA_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/EDA_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/aws_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/temp/aws_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EDA v1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EDA v1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/EDA_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/message_df_fx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/usage_analysis_fx.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/usage_analysis_fx.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aws_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/aws_transformer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/transformer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +22,99 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="aws_transformer.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/aws_transformer.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="268">
+                  <caret line="115" column="73" selection-start-line="115" selection-start-column="73" selection-end-line="115" selection-end-column="73" />
+                  <folding>
+                    <element signature="e#1#20#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="inputfile.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/inputfile.txt">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-156" />
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="metrics.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/demos_checkpoints/metrics.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-234" />
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="explore_msg_df.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/demos_checkpoints/explore_msg_df.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="937">
+                  <caret line="69" column="65" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="65" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="message_df_fx.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="182">
+                  <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="usage_analysis_fx.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1040">
+                  <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+                  <folding>
+                    <element signature="e#66#85#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Scripts/utils.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="806">
+                  <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+                  <folding>
+                    <element signature="e#47#65#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user_page_fx.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Scripts/user_page_fx.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1092">
+                  <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+                  <folding>
+                    <marker date="1548647115408" expanded="true" signature="29:408" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -34,6 +130,11 @@
       <find>explicit_word_in_msg</find>
       <find>msg_df</find>
       <find>tight</find>
+      <find>gather_usage_stats</find>
+      <find>data</find>
+      <find>type</find>
+      <find>metrics</find>
+      <find>sort</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -42,12 +143,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/EDA v1.ipynb" />
-        <option value="$PROJECT_DIR$/aws_transformer.py" />
         <option value="$PROJECT_DIR$/transformer.py" />
-        <option value="$PROJECT_DIR$/Scripts/EDA_functions.py" />
         <option value="$PROJECT_DIR$/temp/usage_analysis_fx.py" />
         <option value="$PROJECT_DIR$/temp/aws_transformer.py" />
+        <option value="$PROJECT_DIR$/Scripts/EDA_functions.py" />
+        <option value="$PROJECT_DIR$/demos_checkpoints/explore_msg_df.py" />
+        <option value="$PROJECT_DIR$/EDA v1.ipynb" />
+        <option value="$PROJECT_DIR$/Scripts/usage_analysis_fx.py" />
+        <option value="$PROJECT_DIR$/Scripts/message_df_fx.py" />
+        <option value="$PROJECT_DIR$/Scripts/user_page_fx.py" />
+        <option value="$PROJECT_DIR$/aws_transformer.py" />
+        <option value="$PROJECT_DIR$/Scripts/utils.py" />
       </list>
     </option>
   </component>
@@ -62,7 +168,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -73,28 +178,25 @@
             <path>
               <item name="Tinder_analysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="Tinder_analysis" type="462c0819:PsiDirectoryNode" />
-              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="demos_checkpoints" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Tinder_analysis" type="b2602c69:ProjectViewProjectNode" />
               <item name="Tinder_analysis" type="462c0819:PsiDirectoryNode" />
-              <item name="temp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Tinder_analysis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tinder_analysis" type="462c0819:PsiDirectoryNode" />
-              <item name="temp" type="462c0819:PsiDirectoryNode" />
               <item name="Scripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -128,62 +230,33 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24958494" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24571112" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.32998884" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32900432" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="7" visible="true" weight="0.38238573" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32998884" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32900432" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp/aws_transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="962">
-          <caret line="51" column="39" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="39" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3042">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
-          <folding>
-            <element signature="e#69#88#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/EDA v1.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -209,39 +282,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
+    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt" />
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1326">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#69#88#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/aws_transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1352">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/aws_transformer.py" />
     <entry file="file://$PROJECT_DIR$/EDA v1.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -260,39 +312,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
+    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt" />
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1326">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="e#69#88#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/aws_transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/aws_transformer.py" />
     <entry file="file://$PROJECT_DIR$/EDA v1.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
         <state>
@@ -311,26 +342,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
+    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt" />
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3770">
           <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
-          <folding>
-            <element signature="e#69#88#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -359,9 +378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
           <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -372,13 +388,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3770">
           <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
-          <folding>
-            <element signature="e#69#88#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -400,19 +413,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
           <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3770">
           <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
-          <folding>
-            <element signature="e#69#88#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -441,31 +448,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1196">
           <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="4" selection-start-column="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#69#88#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aws_transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EDA v3 Usage.ipynb">
       <provider selected="true" editor-type-id="ipnb-editor">
@@ -481,56 +475,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EDA v1.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/temp/inputfile.txt" />
     <entry file="file://$PROJECT_DIR$/transformer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#1#20#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/Scripts/usage_analysis_fx.py">
+    <entry file="file://$PROJECT_DIR$/temp/Scripts/usage_analysis_fx.py" />
+    <entry file="file://$PROJECT_DIR$/temp/aws_transformer.py" />
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EDA v1.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zip_env_test_lambda.sh">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="50" lean-forward="true" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        <state relative-caret-position="1040">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="e#66#85#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/temp/aws_transformer.py">
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+        <state relative-caret-position="182">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos_checkpoints/explore_msg_df.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="937">
+          <caret line="69" column="65" selection-start-line="69" selection-start-column="61" selection-end-line="69" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/user_page_fx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1092">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <marker date="1548647115408" expanded="true" signature="29:408" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demos_checkpoints/metrics.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-234" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inputfile.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-156" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aws_transformer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="115" column="73" selection-start-line="115" selection-start-column="73" selection-end-line="115" selection-end-column="73" />
           <folding>
             <element signature="e#1#20#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EDA_functions.py">
+    <entry file="file://$PROJECT_DIR$/Scripts/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="806">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
           <folding>
-            <element signature="e#69#88#0" expanded="true" />
+            <element signature="e#47#65#0" expanded="true" />
           </folding>
         </state>
       </provider>
