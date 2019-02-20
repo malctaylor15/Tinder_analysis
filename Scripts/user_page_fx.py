@@ -1,22 +1,5 @@
 from Scripts import utils
 
-# import pandas as pd
-# import json
-# from pprint import pprint
-#
-# data_path = 'Data/data.json'
-# with open(data_path, 'rb') as inp:
-#     data = json.load(inp)
-#
-# data.keys()
-# user_df = data['User']
-# data1 = pd.DataFrame(data["Messages"])
-# data1.head()
-# data2 = data1.to_dict()
-# data2.keys()
-# # mets = get_userdf_parts(user_df)
-# # mets['birth_date'][:10]
-# # pprint(mets)
 
 def get_userdf_parts(user_df):
 
