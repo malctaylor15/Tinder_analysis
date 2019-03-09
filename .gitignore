@@ -3,3 +3,6 @@ Data/*
 .idea/
 aws_transformer.zip
 demos_checkpoints
+new_v_env.sh
+parse_env.zip
+parse_env/
