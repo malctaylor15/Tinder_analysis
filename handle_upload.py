@@ -37,7 +37,7 @@ def unzip_file(file_name):
 
     data_path = new_temp_path+"/data.json"
     assert(os.path.isfile(data_path))
-
+    print("Unziped file and found data.json")
     return(data_path)
 
 
@@ -59,9 +59,9 @@ def schema_check(input_list, control_set):
     if len(control_set.difference(input_set)) != 0: errors.append(
         "Extra in control-- " + str(control_set.difference(input_set)))
 
-    # Everything in data should be covered
+    # Everything in input data should be covered
     if len(input_set.difference(control_set)) != 0: errors.append(
-        "Extra in control-- " + str(input_set.difference(control_set)))
+        "Extra in input-- " + str(input_set.difference(control_set)))
 
     return (errors)
 
@@ -85,18 +85,21 @@ def drop_keys_from_dict(keys, big_dict, errors):
 
 def handler(event, context):
 
-    s3_bucket = "tinder-data-prod"
     for record in event['Records']:
 
+        s3_bucket = record['s3']['bucket']['name']
         raw_file_name = record['s3']['object']['key']
-        local_location = '/tmp/'+raw_file_name
+        raw_file_name_short = raw_file_name.split("/")[-1]
+        local_location = '/tmp/'+raw_file_name_short
 
         s3_client.download_file(s3_bucket, raw_file_name, local_location)
 
         # Handle .zip files and files that don't end in json
         if local_location[-4:] == ".zip":
+            print("Zip file found")
             local_location = unzip_file(local_location)
         elif local_location[-4:] != "json":
+            print("JSON file found")
             raise ValueError("File does not end in json")
 
         # Read in file
@@ -114,6 +117,7 @@ def handler(event, context):
         data['User']['travel_location_info'], errors = drop_keys_from_dict(user_travel_drops
                                                                            , user2['travel_location_info'], errors)
 
+
         #Create new id for file
         new_id = "_".join([data['User']['create_date'], data['User']['birth_date']])
         new_file_name = "reformatted_data_"+new_id+".json"
@@ -124,9 +128,12 @@ def handler(event, context):
             json.dump(data, hnd)
 
         # Upload to s3
+        if "s3_upload_bucket" in os.environ.keys():
+            s3_bucket = os.environ["s3_upload_bucket"]
+
         bucket_location = "reformatted_json/"+new_file_name
         s3_client.upload_file(new_tmp_upload_pth, s3_bucket, bucket_location)
-
+    print("Uploaded file to bucket: ", s3_bucket)
     return(0)
 
 

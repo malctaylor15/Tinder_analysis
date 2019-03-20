@@ -89,19 +89,26 @@ def parse_json(data_path, output_path= "output_graphs.pdf"):
 
 
 def handler(event, context):
+
     for record in event['Records']:
+        uuid_key = uuid.uuid4()
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
-        download_path = str('/tmp/data_{}.json'.format(uuid.uuid4()))
-        upload_path = str('/tmp/{}_output_graphs.pdf'.format(key))
-        new_key = 'output_graphs.pdf'
+        download_path = str('/tmp/data_{}.json'.format(uuid_key))
+        upload_path = str('/tmp/{}_output_graphs.pdf'.format(uuid_key))
+
 
         s3_client.download_file(bucket, key, download_path)
         metrics = parse_json(download_path, upload_path)
+
+        unique_id = "_".join([metrics['user']['create_date'],
+                              metrics['user']['birth_date']])
+
+        new_key = 'graphs/output_graphs_' + unique_id + '.pdf'
+
         tbl_response = table.put_item(
             Item = {
-                'created_birthday': "_".join([metrics['user']['create_date'],
-                                             metrics['user']['birth_date']]),
+                'created_birthday': unique_id,
                 'request_date': str(datetime.datetime.now()),
                 'pdf_s3_bucket': bucket,
                 'pdf_s3_file_name': new_key,
